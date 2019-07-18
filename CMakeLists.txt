@@ -17,4 +17,24 @@ add_custom_target(linecount
 enable_testing()
 
 include_directories(source)
-add_subdirectory(test)
+#add_subdirectory(test)
+
+include(GNUInstallDirs)
+
+add_library(Streams INTERFACE)
+target_include_directories(
+	Streams
+	INTERFACE
+	$<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/source/>
+	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+install(DIRECTORY source/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/Streams)
+install(
+	TARGETS Streams
+	EXPORT Streams-config
+)
+install(
+	EXPORT Streams-config
+	DESTINATION share/streams
+)
