@@ -67,7 +67,7 @@ public:
         }
         try {
             return terminator_(std::forward<Stream<T>>(stream));
-        } catch(EmptyStreamException& e) {
+        } catch(EmptyStreamException& ) {
             if(!name_.empty()) {
                 throw EmptyStreamException(name_);
             } else {

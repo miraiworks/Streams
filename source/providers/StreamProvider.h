@@ -39,7 +39,7 @@ public:
     bool advance() {
         try {
             return advance_impl();
-        } catch(stream::StopStream& stop) {
+        } catch(stream::StopStream& ) {
             return false;
         } catch(...) {
             throw;
